@@ -7,9 +7,9 @@
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.json", "src/***/**/*.ts"],
+  "include": ["src/**/*.json", "src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "lib": ["es2015"]
 }

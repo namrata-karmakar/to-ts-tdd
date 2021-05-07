@@ -13,7 +13,7 @@ const SignUpSchema = {
     isEmail: true,
     errorMessage: INVALID_EMAIL_MESSAGE,
     normalizeEmail: {
-      gmail_remove_dots: false,
+      gmail_remove_dots: true,
     },
     custom: {
       options: async (username) => {

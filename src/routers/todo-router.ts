@@ -74,7 +74,7 @@ class ToDoRouter {
       SchemaMiddleware.validate(GetToDoByIDSchema),
       SchemaValidationErrorMiddleware.validate,
       async (req: Request, res: Response) => {
-        let response = '';
+        let response;
         let status = 0;
         const _id = ObjectID.createFromHexString(req.params.id);
         try {
