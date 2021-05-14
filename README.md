@@ -1,2 +1,2 @@
-# to-ts-tdd
+# todo-ts-tdd
 todo app using ts
