@@ -17,7 +17,7 @@ describe(`Created On Test Suite`, ()=>{
         userID = responseFromSignUp.body.ops[0]._id;
         const {username, password} = requestBody
         const response = await request(app).post('/user/login').send({username, password})
-        jwtToken = response.text;
+        jwtToken = response.body.token;
     })
     afterAll(async ()=>{
         await new Database().dropDatabase();

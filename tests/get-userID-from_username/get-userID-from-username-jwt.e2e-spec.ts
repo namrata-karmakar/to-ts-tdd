@@ -19,7 +19,7 @@ describe(`Get UserID from Username Test Suite for JWT`, () => {
     const responseFromLogin = await request(app)
       .post("/user/login")
       .send({ username, password });
-    jwtToken = responseFromLogin.text;
+    jwtToken = responseFromLogin.body.token;
   });
 
   afterAll(async () => {

@@ -1,19 +1,19 @@
-import { Database, CountParams } from '../database';
+import { Database, ReadParams } from '../database';
 
 class UserAuthentication {
   static async authenticateUser(
     username: string,
     password: string,
-  ): Promise<number> {
+  ): Promise<any> {
     try {
-      const countParams: CountParams = {
+      const readOneParams: ReadParams = {
         query: { username, password },
         options: {},
         collection: 'userData',
       };
       const db = new Database();
-      const count = await db.countDocuments(countParams);
-      return count;
+      const userData = await db.readOne(readOneParams);
+      return userData;
     } catch (e) {
       throw e;
     }

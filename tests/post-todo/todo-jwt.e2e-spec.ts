@@ -21,7 +21,7 @@ describe(`ToDo Test Suite for JWT`, () => {
     const response = await request(app)
       .post("/user/login")
       .send({ username, password });
-    jwtToken = response.text;
+    jwtToken = response.body.token;
     requestBody = {
       todo: "Ride",
       status: "Done",

@@ -21,7 +21,7 @@ describe(`Todo Test Suite`, () => {
     const response = await request(app)
       .post("/user/login")
       .send({ username, password });
-    jwtToken = response.text;
+    jwtToken = response.body.token;
   });
 
   afterAll(async () => {

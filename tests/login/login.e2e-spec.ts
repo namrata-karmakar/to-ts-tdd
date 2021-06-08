@@ -2,6 +2,7 @@ import request from "supertest"
 import validator from 'validator'
 import { Database } from '../../src/database'
 import { app } from "../../src/app"
+import { ObjectID } from "mongodb"
 
 describe(`Login Test Suite`, ()=>{
 
@@ -34,10 +35,23 @@ describe(`Login Test Suite`, ()=>{
             "password" : "N$dnoq2jie"
         }
         const response = await request(app).post('/user/login').send(requestBody)
-        const { text } = response;
-        expect(validator.isJWT(text)).toBeTruthy()
+        const { body } = response;
+        const { token } = body;
+        expect(validator.isJWT(token)).toBeTruthy()
         done();
     })
+
+    it(`must login and return userID in mongoDB ObjectID format`, async done=>{
+        const requestBody = {"username" : "falknor@gmail.com",
+            "password" : "N$dnoq2jie"
+        }
+        const response = await request(app).post('/user/login').send(requestBody)
+        const { body } = response;
+        const { userID } = body;
+        expect(ObjectID.isValid(userID)).toBeTruthy()
+        done();
+    })
+
 })
 
 

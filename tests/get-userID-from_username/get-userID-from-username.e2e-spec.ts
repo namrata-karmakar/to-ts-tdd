@@ -20,7 +20,7 @@ describe(`Get UserID from Username Test Suite`, () => {
     const responseFromLogin = await request(app)
       .post("/user/login")
       .send({ username, password });
-    jwtToken = responseFromLogin.text;
+    jwtToken = responseFromLogin.body.token;
   });
 
   afterAll(async () => {
@@ -32,7 +32,7 @@ describe(`Get UserID from Username Test Suite`, () => {
       .get(`/api/user/username`)
       .set({ "x-token-header": jwtToken })
       .send();
-    const { status, body } = response;
+    const { status } = response;
     expect(status).toBe(404);
     done();
   });

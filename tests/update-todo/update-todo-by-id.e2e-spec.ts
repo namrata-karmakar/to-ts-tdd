@@ -22,7 +22,7 @@ describe(`Update Todo By ID Test Suite`, () => {
     const responseFromLogin = await request(app)
       .post('/user/login')
       .send({ username, password });
-    jwtToken = responseFromLogin.text;
+    jwtToken = responseFromLogin.body.token;
 
     todoRequestBody = {
       todo: 'Eat',

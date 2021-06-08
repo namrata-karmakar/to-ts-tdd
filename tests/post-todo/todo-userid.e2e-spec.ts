@@ -23,7 +23,7 @@ describe(`UserID Test Suite`, () => {
     const response = await request(app)
       .post("/user/login")
       .send({ username, password });
-    jwtToken = response.text;
+    jwtToken = response.body.token;
   });
   afterAll(async () => {
     await new Database().dropDatabase();

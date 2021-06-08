@@ -22,7 +22,7 @@ describe(`Get Todo By ID Test Suite for JWT`, () => {
 		const responseFromLogin = await request(app)
 			.post("/user/login")
 			.send({ username, password });
-		jwtToken = responseFromLogin.text;
+		jwtToken = responseFromLogin.body.token;
 
 		todoRequestBody = {
 			todo: "Eat",

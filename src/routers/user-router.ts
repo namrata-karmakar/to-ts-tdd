@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 import { Request, Response, Router } from "express";
-import { validationResult, Result, ValidationError } from "express-validator";
 import { Database, InsertParams, ReadParams } from "../database";
 import { SignUpSchema } from "../validations/signup-validations/signup-schema-validations";
 import { SchemaMiddleware } from "../validations/schema-middleware";
@@ -44,17 +43,20 @@ class UserRouter {
       SchemaMiddleware.validate(LoginSchema),
       SchemaValidationErrorMiddleware.validate,
       async (req, res) => {
-        let response = "";
+        let response = {};
         let status = 0;
         try {
           const { username } = req.body;
           const { password } = req.body;
-          const checkCredentials = await UserAuthentication.authenticateUser(
+          const userData = await UserAuthentication.authenticateUser(
             username,
             password
           );
-          if (checkCredentials === 1) {
-            response = JWTMiddleware.createToken();
+          if (userData && userData !== undefined ) {
+            response = {
+              token: JWTMiddleware.createToken(),
+              userID: userData._id
+            }
             status = 202;
           } else {
             response = "Invalid Credentials";
