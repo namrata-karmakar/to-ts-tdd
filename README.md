@@ -1,5 +1,5 @@
 # To-Do List App
-This is a To-Do List Application built using Node.js, Express and TypeScript. This repository only holds the back-end code of the application. For front-end (made using VanillajJS and Bootstrap 5) please [click here](https://github.com/namrata-karmakar/toDo).
+This is a To-Do List Application built using Node.js, Express and TypeScript. This repository only holds the back-end code of the application. For front-end (made using VanillajJS and Bootstrap 5) please [click here](https://github.com/namrata-karmakar/todo-vanilla-ui).
 ## API Reference
 
 #### Get all todos for a particular userID
