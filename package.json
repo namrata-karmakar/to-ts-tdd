@@ -11,10 +11,7 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "postinstall": "tsc",
-    "watch-node": "nodemon dist/server.js",
-    "watch-ts": "tsc -w",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main"
+    "postinstall": "tsc"
   },
   "author": "",
   "license": "ISC",
