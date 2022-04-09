@@ -3,5 +3,6 @@ import { app } from "./app";
 
 const port = process.env.PORT || config.get("port")
 app.listen(port, () => {
-  console.log(`listening at port ${port}`);  
+  console.log(`listening at port ${port}`);
+  console.log(`environment is ${config.get("env")}`);
 });
