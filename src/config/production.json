@@ -1,7 +1,0 @@
-{
-  "env": "production",
-  "port": 3012,
-  "dbURL": "mongodb://localhost:27017",
-  "dbName": "toDoDev",
-  "secretString": "abcpqr"
-}
