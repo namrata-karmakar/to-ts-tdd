@@ -1,9 +1,8 @@
 import jsonwebtoken from 'jsonwebtoken';
-import { config } from '../config/config';
 
 class JWTMiddleware {
   static createToken(): string {
-    return jsonwebtoken.sign({}, config.get('secretString'), {
+    return jsonwebtoken.sign({}, process.env.SECRET_STRING, {
       expiresIn: '999h',
     });
   }
@@ -13,7 +12,7 @@ class JWTMiddleware {
     if (!jwt) {
       res.status(403).send({ message: 'No token provided!' });
     } else {
-      jsonwebtoken.verify(jwt, config.get('secretString'), (err) => {
+      jsonwebtoken.verify(jwt, process.env.SECRET_STRING, (err) => {
         if (err) {
           res.status(403).send(err);
         } else {

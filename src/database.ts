@@ -1,11 +1,9 @@
-/* eslint-disable class-methods-use-this */
 import { MongoClient } from "mongodb";
-import { config } from "./config/config";
 
 class Database {
   async getConnection(): Promise<MongoClient> {
     try {
-      const client = new MongoClient(config.get("dbURL"), {
+      const client = new MongoClient(process.env.DB_URL, {
         useUnifiedTopology: true,
       });
       const connection = await client.connect();
@@ -19,7 +17,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       await db.dropDatabase();
     } catch (e) {
       console.error(`${e.message}-${e.stack}`);
@@ -33,7 +31,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(insertOneParams.collection);
       const data = await collection.insertOne(insertOneParams.data);
       return data;
@@ -48,7 +46,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(countParams.collection);
       const data: number = await collection.countDocuments(
         countParams.query,
@@ -66,7 +64,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(readParams.collection);
       const data = await collection
         .find(readParams.query, readParams.options)
@@ -83,7 +81,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(readOneParams.collection);
       const data = await collection.findOne(
         readOneParams.query,
@@ -101,7 +99,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(updateOneParams.collection);
       const data = await collection.updateOne(
         updateOneParams.filter,
@@ -120,7 +118,7 @@ class Database {
     let client;
     try {
       client = await this.getConnection();
-      const db = client.db(config.get("dbName"));
+      const db = client.db(process.env.DB_NAME);
       const collection = db.collection(deleteOneParams.collection);
       const data = await collection.deleteOne(
         deleteOneParams.filter,
