@@ -10,10 +10,9 @@
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand --config ./jest.config.js",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "npm run lint -- --fix",
-    "postinstall": "tsc"
+    "lint:fix": "npm run lint -- --fix"
   },
-  "author": "",
+  "author": "Namrata Karmakar",
   "license": "ISC",
   "dependencies": {
     "convict": "^6.0.1",
